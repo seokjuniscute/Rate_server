@@ -5,11 +5,9 @@ class CreateRatings < ActiveRecord::Migration[5.2]
       t.string :what_you_good,null: false, default: ""
       t.string :what_you_bad,null: false, default: ""
       t.string :ide,null: false, default: ""
-      t.integer :year,null: false, default: ""
-      t.integer :month,null: false, default: ""
-      t.integer :day,null: false, default: ""
-      t.integer :hour,null: false, default: ""
-      t.integer :min,null: false, default: ""
+      t.integer :year,null: false, default: 0
+      t.integer :month,null: false, default: 0
+      t.integer :day,null: false, default: 0
       t.timestamps
     end
   end
