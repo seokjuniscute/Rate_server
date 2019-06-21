@@ -1,6 +1,6 @@
 class RegisterController < ApplicationController
     def register
-	if(params[:password] == nill || params[:ide} == nill)
+	if(params[:password] == nill || params[:id] == nill)
 	    head :bad_request
 	end
 	    
