@@ -1,4 +1,4 @@
-class ReminderController <=== ApplicationController
+class ReminderController < ApplicationController
     def get_reminder
         if(User.exists?(ide: params[:id]))
             if(params[:content] == "")
