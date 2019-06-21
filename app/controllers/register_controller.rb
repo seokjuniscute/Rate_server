@@ -1,8 +1,8 @@
 class RegisterController < ApplicationController
     def register
-	if(params[:password] == nil || params[:id] == nil)
+	if(params[:password] == "" || params[:id] == "")
 	    head :bad_request
-	elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[minutes].to_i > 60)
+	elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[:minutes].to_i > 60)
 	    head :bad_request
 	else
 	    if(User.exists?(ide: params[:id]))
