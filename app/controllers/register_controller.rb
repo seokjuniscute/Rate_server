@@ -2,19 +2,22 @@ class RegisterController < ApplicationController
     def register
 	if(params[:password] == nil || params[:id] == nil)
 	    head :bad_request
-	end
-	if(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[minutes].to_i > 60)
-	   head :bad_request
-	end
-        if(User.exists?(ide: params[:id]))
-            head :forbidden
-        elsif(!(User.exists?(ide: params[:id])))
-            User.create(ide: params[:id],password: params[:password],created_at: Time.inspect,hour: params[:hours].to_i, min: params[:minutes].to_i)
+	elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[minutes].to_i > 60)
+	    head :bad_request
+	else
+	    if(User.exists?(ide: params[:id]))
+               head :forbidden
+            elsif(!(User.exists?(ide: params[:id])))
+               User.create(ide: params[:id],password: params[:password],created_at: Time.inspect,hour: params[:hours].to_i, min: params[:minutes].to_i)
             head :ok
+	    else
+	        head :internal_server_error
+             end
+	end
+	
 	   
-        else
-	    head :internal_server_error
-        end
+	
+        
     end
 
     def check
