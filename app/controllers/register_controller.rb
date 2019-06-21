@@ -54,8 +54,8 @@ class RegisterController < ApplicationController
         if(User.exists?(ide: params[:id]))
             user = User.find_by(ide: params[:id])
             render json: {
-                "hours" : user.hour,
-                "minutes" : user.min
+                "hours": user.hour,
+                "minutes": user.min
             }
         elsif(!(User.exists?(ide: params[:id])))
             head :forbidden 

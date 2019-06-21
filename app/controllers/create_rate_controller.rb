@@ -5,7 +5,7 @@ class CreateRateController < ApplicationController
                 head :bad_request
             elsif(!(params[:hour].kind_of?(Fixnum) || params[:minutes].kind_of?(Fixnum)))
                 head :bad_request
-            elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[:minutes].to_i > 60 || params[:importance].to_i < 0 || params[:importance].to_i > 5 ||)
+            elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[:minutes].to_i > 60 || params[:importance].to_i < 0 || params[:importance].to_i > 5)
                 head :bad_request
             elsif(!(params[:year].kind_of?(Fixnum) || params[:day].kind_of?(Fixnum) || params[:month].kind_of?(Fixnum)))
                 head :bad_request
@@ -28,9 +28,9 @@ class CreateRateController < ApplicationController
                 if(Reminder.exists?(ide: params[:id],year: params[:year],month: params[:month],hour: params[:hours],month: params[:month],day: params[:day]))
                     rate = Rating.find_by(ide: params[:id],year: params[:year],month: params[:month],hour: params[:hours],month: params[:month],day: params[:day])
                     render json: {
-                        "whatyoudo" : rate.what_you_do,
-                        "whatyougood" : rate.what_you_good,
-                        "whatyoubad" : rate.what_you_bad
+                        "whatyoudo": rate.what_you_do,
+                        "whatyougood": rate.what_you_good,
+                        "whatyoubad": rate.what_you_bad
                     }
                 else
                     head :bad_request
