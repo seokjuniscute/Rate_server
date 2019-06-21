@@ -1,0 +1,2 @@
+class CreateRateController < ApplicationController
+end
