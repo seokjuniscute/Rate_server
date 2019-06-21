@@ -2,8 +2,7 @@ class RegisterController < ApplicationController
     def register
 	if(params[:password] == "" || params[:id] == "")
         head :bad_request
-    elsif(!(params[:hour].kind_of?(Fixnum) || params[:minutes].kind_of?(Fixnum)))
-        head :bad_request
+    
 	elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[:minutes].to_i > 60 )
 	    head :bad_request
 	else

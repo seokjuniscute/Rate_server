@@ -7,9 +7,7 @@ class ReminderController < ApplicationController
                 head :bad_request
             elsif(params[:hours].to_i < 0 || params[:hours].to_i > 24 || params[:minutes].to_i < 0 || params[:minutes].to_i > 60 || params[:importance].to_i < 0 || params[:importance].to_i > 5)
                 head :bad_request
-            elsif(!(params[:year].kind_of?(Fixnum) || params[:day].kind_of?(Fixnum) || params[:month].kind_of?(Fixnum)))
-                head :bad_request
-            elsif(params[:month]>12 || params[:month] < 0 || params[:day] > 31 || params[:day] < 0 || params[:year] < 0)
+            elsif(params[:month].to_i>12 || params[:month].to_i < 0 || params[:day] > 31 || params[:day].to_i < 0 || params[:year].to_i < 0)
                 head :bad_request
             else
                 Reminder.create(ide: params[:id], content: params[:content],hour: params[:hours].to_i,min: params[:minutes].to_i,year: params[:year].to_i,month: params[:month].to_i,day: params[:month].to_i,importance: params[:importance].to_i)
