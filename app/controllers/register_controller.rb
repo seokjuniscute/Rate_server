@@ -1,5 +1,9 @@
 class RegisterController < ApplicationController
     def register
+	if(params[:password] == nill || params[:ide} == nill)
+	    head :bad_request
+	end
+	    
         if(User.exists?(ide: params[:id]))
             head :forbidden
         elsif(!(User.exists?(ide: params[:id])))
