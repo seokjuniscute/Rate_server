@@ -1,38 +1,30 @@
 class RegisterController < ApplicationController
     def register
         if(User.exists?(ide: params[:id]))
-            render json: {
-                "success": false,
-                "msg": "아이디가 중복입니다" 
-            }
+            render status: 403
+	    render nothing: true
         elsif(!(User.exists?(ide: params[:id])))
             User.create(ide: params[:id],password: params[:password],created_at: Time.inspect)
-            
-            render json: {
-                "success": true,
-                "msg": "회원가입을 환영합니다."
-            }   
+            render status: 200
+	    render nothing: true
+        else
+	    render status: 500 
+	    render nothing: true
         end
     end
 
     def check
         if(User.exists?(ide: params[:id]))
             if(User.exists?(password: params[:password]))
-                render json: {
-                    "success": true,
-                    "msg": "로그인에 성공하였습니다."
-                }
+                render status: 200
+    		render nothing: true
             elsif(!(User.exists?(password: params[:password])))
-                render json: {
-                    "success": false,
-                    "msg": "비밀번호가 틀립니다."
-                }
+           	render status: 403
+		render nothing: true
             end
         else
-            render json: {
-                "success": false,
-                "msg": "아이디가 틀립니다."
-            }
+		render status: 403
+		render nothing: true
         end
     end
 
@@ -43,11 +35,22 @@ class RegisterController < ApplicationController
             user.min = params[:min]
             if(user.save)
                 render status: 200
+		render nothing: true
             else 
                 render status: 500
+		render nothing: true
             end
         else
             render status: 400
+	    render nothing: true
         end
+    end
+
+    def id_check
+	if(User.exists?(ide: params[:id]))
+	   render status: 403
+	elsif(!(User.exists?(ide: params[:id])))
+	   render status: 200
+	end
     end
 end
