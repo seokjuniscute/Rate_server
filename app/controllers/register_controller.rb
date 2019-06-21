@@ -26,8 +26,8 @@ class RegisterController < ApplicationController
     def set_time
         if(User.exists?(ide: params[:id]))
             user = User.find_by(ide: params[:id])
-            user.hour = params[:hour]
-            user.min = params[:min]
+            user.hour = params[:hours]
+            user.min = params[:minutes]
             if(user.save)
                 head :ok
             else 
