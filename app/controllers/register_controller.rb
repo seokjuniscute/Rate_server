@@ -1,30 +1,25 @@
 class RegisterController < ApplicationController
     def register
         if(User.exists?(ide: params[:id]))
-            render status: 403
-	    render nothing: true
+            head :forbidden
         elsif(!(User.exists?(ide: params[:id])))
             User.create(ide: params[:id],password: params[:password],created_at: Time.inspect)
-            render status: 200
-	    render nothing: true
+            head :ok
+	   
         else
-	    render status: 500 
-	    render nothing: true
+	    head :internal_server_error
         end
     end
 
     def check
         if(User.exists?(ide: params[:id]))
             if(User.exists?(password: params[:password]))
-                render status: 200
-    		render nothing: true
+                head :ok
             elsif(!(User.exists?(password: params[:password])))
-           	render status: 403
-		render nothing: true
+           	head :forbidden
             end
         else
-		render status: 403
-		render nothing: true
+		head :forbidden
         end
     end
 
@@ -34,23 +29,20 @@ class RegisterController < ApplicationController
             user.hour = params[:hour]
             user.min = params[:min]
             if(user.save)
-                render status: 200
-		render nothing: true
+                head :ok
             else 
-                render status: 500
-		render nothing: true
+                head :internal_server_error
             end
         else
-            render status: 400
-	    render nothing: true
+            head :internal_server_error
         end
     end
 
     def id_check
 	if(User.exists?(ide: params[:id]))
-	   render status: 403
+	   head :forbidden
 	elsif(!(User.exists?(ide: params[:id])))
-	   render status: 200
+	   head :ok
 	end
     end
 end
