@@ -3,7 +3,7 @@ class RegisterController < ApplicationController
         if(User.exists?(ide: params[:id]))
             head :forbidden
         elsif(!(User.exists?(ide: params[:id])))
-            User.create(ide: params[:id],password: params[:password],created_at: Time.inspect)
+            User.create(ide: params[:id],password: params[:password],created_at: Time.inspect,hour: params[:hours], min: params[:minutes])
             head :ok
 	   
         else
