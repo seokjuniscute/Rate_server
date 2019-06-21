@@ -28,8 +28,8 @@ class ReminderController < ApplicationController
                 if(Reminder.exists?(ide: params[:id],year: params[:year],month: params[:month],hour: params[:hours],month: params[:month],day: params[:day]))
                     reminder = Reminder.find_by(ide: params[:id],year: params[:year],month: params[:month],hour: params[:hours],month: params[:month],day: params[:day])
                     render json: {
-                        "content" : reminder.content,
-                        "importance" : reminder.importance
+                        "content": reminder.content,
+                        "importance": reminder.importance
                     }
                 else
                     head :bad_request
