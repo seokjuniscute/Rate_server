@@ -13,28 +13,35 @@
 ActiveRecord::Schema.define(version: 2019_06_20_091332) do
 
   create_table "ratings", force: :cascade do |t|
-    t.string "what_you_do"
-    t.string "what_yuo_good"
-    t.string "what_you_bad"
-    t.string "ide"
+    t.string "what_you_do", default: "", null: false
+    t.string "what_you_good", default: "", null: false
+    t.string "what_you_bad", default: "", null: false
+    t.string "ide", default: "", null: false
+    t.integer "year", default: 0, null: false
+    t.integer "month", default: 0, null: false
+    t.integer "day", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "reminders", force: :cascade do |t|
-    t.string "content"
-    t.integer "importance"
-    t.date "setted_date"
-    t.time "setted_time"
+    t.string "content", default: "", null: false
+    t.integer "importance", null: false
+    t.integer "year", null: false
+    t.integer "month", null: false
+    t.integer "day", null: false
+    t.integer "hour", null: false
+    t.integer "min", null: false
+    t.string "ide", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "ide"
-    t.string "password"
-    t.integer "hour"
-    t.integer "min"
+    t.string "ide", default: "", null: false
+    t.string "password", default: "", null: false
+    t.integer "hour", null: false
+    t.integer "min", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
