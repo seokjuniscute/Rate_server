@@ -11,12 +11,12 @@ class CreateRateController < ApplicationController
                     rate.what_you_bad = params[:what_you_bad]
                     rate.what_you_do = params[:what_you_do]
                     rate.what_you_good = params[:what_you_good]
-                    rate.importance = params[:importance].to_i
+                    rate.importance = params[:importance].to_f
                     rate.save
                     head :ok
                     
                 else
-                    Rating.create(ide: params[:id], what_you_bad: params[:what_you_bad],what_you_do: params[:what_you_do],what_you_good: params[:what_you_good],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i,importance: params[:importance].to_i)
+                    Rating.create(ide: params[:id], what_you_bad: params[:what_you_bad],what_you_do: params[:what_you_do],what_you_good: params[:what_you_good],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i,importance: params[:importance].to_f)
                 head :ok
                 end
             end
