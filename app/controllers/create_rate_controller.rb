@@ -6,7 +6,7 @@ class CreateRateController < ApplicationController
             elsif(params[:month].to_i>12 || params[:month].to_i < 0 || params[:day].to_i > 31 || params[:day].to_i < 0 || params[:year].to_i < 0)
                 head :bad_request
             else
-                if(Rating.exists?(ide: params[:id] && month: = params[:month].to_i && year: params[:year].to_i && day: params[:day]) )
+                if(Rating.exists?(ide: params[:id] && month:  params[:month].to_i && year: params[:year].to_i && day: params[:day]) )
                     rate = Rating.find_by(ide: params[:id],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i)
                     rate.what_you_bad = params[:what_you_bad]
                     rate.what_you_do = params[:what_you_do]
