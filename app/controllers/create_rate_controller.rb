@@ -11,10 +11,12 @@ class CreateRateController < ApplicationController
                     rate.what_you_bad = params[:what_you_bad]
                     rate.what_you_do = params[:what_you_do]
                     rate.what_you_good = params[:what_you_good]
+                    rate.importance = params[:importance].to_i
                     rate.save
+                    head :ok
                     
                 else
-                    Rating.create(ide: params[:id], what_you_bad: params[:what_you_bad],what_you_do: params[:what_you_do],what_you_good: params[:what_you_good],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i)
+                    Rating.create(ide: params[:id], what_you_bad: params[:what_you_bad],what_you_do: params[:what_you_do],what_you_good: params[:what_you_good],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i,importance: params[:importance].to_i)
                 head :ok
                 end
             end
@@ -27,24 +29,24 @@ class CreateRateController < ApplicationController
 
     def send_rate
         if(User.exists?(ide: params[:id]))
-            if(true)
-                if(Rating.exists?(ide: params[:id],year: params[:year],month: params[:month],day: params[:day]))
+            if(Rating.exists?(ide: params[:id],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i))
                     rate = Rating.find_by(ide: params[:id],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i)
                     render json: {
                         "whatyoudo": rate.what_you_do,
                         "whatyougood": rate.what_you_good,
-                        "whatyoubad": rate.what_you_bad
+                        "whatyoubad": rate.what_you_bad,
+                        "importance": rate.importance
                     }
-                else
-                    head :bad_request
-                end
             else
-                head :bad_request
+                    head :bad_request
             end
+          
         elsif(!(User.exists?(ide: params[:id])))
             head :forbidden
         else
             head :internal_server_error
         end
     end
+    
+    
 end

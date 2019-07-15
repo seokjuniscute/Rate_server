@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get '/set_reminder', to: 'reminder#get_reminder'
   get '/get_reminder', to: 'reminder#send_reminder'
   get '/set_rating', to: 'create_rate#get_rate'
-  get '/get_raing', to: 'create_rate#send_rate'
+  get '/get_rating', to: 'create_rate#send_rate'
+  get '/delete_reminder', to: 'reminder#delete_reminder'
 end
