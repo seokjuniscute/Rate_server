@@ -26,7 +26,7 @@ class CreateRateController < ApplicationController
             head :internal_server_error
         end
     end
-
+end
     def send_rate
         if(User.exists?(ide: params[:id]))
             if(Rating.exists?(ide: params[:id],year: params[:year].to_i,month: params[:month].to_i,day: params[:day].to_i))
