@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_06_20_091332) do
     t.string "what_you_do", default: "", null: false
     t.string "what_you_good", default: "", null: false
     t.string "what_you_bad", default: "", null: false
+    t.float "importance"
     t.string "ide", default: "", null: false
     t.integer "year", default: 0, null: false
     t.integer "month", default: 0, null: false
@@ -26,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_06_20_091332) do
 
   create_table "reminders", force: :cascade do |t|
     t.string "content", default: "", null: false
-    t.integer "importance", null: false
+    t.float "importance", null: false
     t.integer "year", null: false
     t.integer "month", null: false
     t.integer "day", null: false
